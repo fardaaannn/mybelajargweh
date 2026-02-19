@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+    
+    /* iPhone-inspired colors */
+    --ios-blue: 211 100% 50%;
+    --ios-green: 135 60% 50%;
+    --ios-orange: 35 100% 50%;
+    --ios-purple: 270 60% 55%;
+    --ios-pink: 340 80% 60%;
+    --ios-gray: 240 5% 45%;
+    --ios-light-gray: 240 5% 95%;
+    
+    /* Code editor colors */
+    --editor-bg: 0 0% 98%;
+    --editor-border: 240 5.9% 90%;
+  }
+
+  .dark {
+    --background: 240 10% 6%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 18%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 18%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 18%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 20%;
+    --input: 240 3.7% 20%;
+    --ring: 240 4.9% 83.9%;
+    
+    /* Dark mode code editor */
+    --editor-bg: 220 13% 12%;
+    --editor-border: 240 3.7% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+}
+
+@layer components {
+  /* iPhone-style card with glassmorphism effect */
+  .ios-card {
+    @apply rounded-2xl bg-card border border-border/50 shadow-sm;
+    @apply backdrop-blur-xl;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 
+                0 0 1px rgba(0, 0, 0, 0.08);
+  }
+  
+  .dark .ios-card {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2), 
+                0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  
+  /* iPhone-style button */
+  .ios-button {
+    @apply rounded-xl font-medium transition-all duration-200;
+    @apply active:scale-95;
+  }
+  
+  .ios-button-primary {
+    @apply ios-button bg-[hsl(var(--ios-blue))] text-white;
+    @apply hover:bg-[hsl(211,100%,45%)];
+  }
+  
+  .ios-button-secondary {
+    @apply ios-button bg-secondary text-secondary-foreground;
+    @apply hover:bg-secondary/80;
+  }
+  
+  /* Progress bar styling */
+  .ios-progress {
+    @apply h-2 rounded-full overflow-hidden bg-muted;
+  }
+  
+  .ios-progress-bar {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+    background: linear-gradient(90deg, hsl(var(--ios-blue)), hsl(var(--ios-purple)));
+  }
+  
+  /* Tab styling for editor */
+  .editor-tab {
+    @apply px-4 py-2 text-sm font-medium rounded-t-lg transition-colors;
+    @apply text-muted-foreground hover:text-foreground;
+  }
+  
+  .editor-tab-active {
+    @apply editor-tab bg-[hsl(var(--editor-bg))] text-foreground border-t-2;
+    border-color: hsl(var(--ios-blue));
+  }
+  
+  /* CodeMirror custom styling */
+  .cm-editor {
+    @apply rounded-lg;
+  }
+  
+  .cm-editor.cm-focused {
+    @apply outline-none;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-muted-foreground/20;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+  
+  /* iPhone-style navigation */
+  .ios-nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all;
+    @apply text-muted-foreground hover:text-foreground hover:bg-muted;
+  }
+  
+  .ios-nav-item-active {
+    @apply ios-nav-item bg-primary/10 text-primary;
+  }
+  
+  /* Badge styling */
+  .ios-badge {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  
+  .ios-badge-beginner {
+    @apply ios-badge bg-[hsl(135,60%,50%,0.15)] text-[hsl(135,60%,40%)];
+  }
+  
+  .ios-badge-intermediate {
+    @apply ios-badge bg-[hsl(35,100%,50%,0.15)] text-[hsl(35,100%,40%)];
+  }
+  
+  .ios-badge-advanced {
+    @apply ios-badge bg-[hsl(340,80%,60%,0.15)] text-[hsl(340,80%,50%)];
+  }
+}
+
+@layer utilities {
+  /* Safe area padding for mobile devices */
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
