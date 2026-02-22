@@ -1,149 +1,306 @@
 /**
  * Lesson Modules Data
  * @module data/modules
- * 
- * Contains all lesson modules and exercises for the CodeLearn platform.
- * This data can be easily extended or replaced with API calls in the future.
+ *
+ * Contains all 25 lesson modules for the CodeLearn platform curriculum.
+ * Organized by difficulty: Pemula (8), Menengah (9), Lanjutan (5), Sepuh (3).
  */
 
-import type { LessonModule, Exercise } from '@/types';
+import type { LessonModule } from '@/types';
 
 /** Array of lesson modules available in the curriculum */
 export const lessonModules: LessonModule[] = [
+  // ═══════════════════════════════════════════════════
+  // 🟢 PEMULA / BEGINNER (Modules 1-8)
+  // ═══════════════════════════════════════════════════
   {
-    id: 'html-basics',
-    title: 'HTML Dasar',
-    description: 'Pelajari fondasi pembangunan web dengan HTML. Memahami struktur dokumen, tag, elemen, dan atribut.',
+    id: 'html-intro',
+    title: 'HTML: Pengenalan',
+    description: 'Fondasi web development: struktur dokumen HTML, tag, elemen, atribut, heading, dan paragraf.',
     difficulty: 'beginner',
-    progress: 75,
-    totalExercises: 8,
-    completedExercises: 6,
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
     icon: 'FileCode',
     color: 'hsl(var(--ios-orange))',
   },
   {
-    id: 'css-styling',
-    title: 'CSS Styling',
-    description: 'Kuasai styling web dengan CSS. Pelajari selector, properties, layout, dan responsive design.',
+    id: 'html-content',
+    title: 'HTML: Konten & Format',
+    description: 'Formatting teks, komentar, warna, styles inline, dan elemen kutipan di HTML.',
     difficulty: 'beginner',
-    progress: 40,
-    totalExercises: 10,
-    completedExercises: 4,
-    icon: 'Palette',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Type',
+    color: 'hsl(var(--ios-red))',
+  },
+  {
+    id: 'html-links-media',
+    title: 'HTML: Links & Media',
+    description: 'Hyperlink, gambar, favicon, meta tag, elemen video dan audio di HTML.',
+    difficulty: 'beginner',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Link',
     color: 'hsl(var(--ios-blue))',
   },
   {
-    id: 'js-fundamentals',
-    title: 'JavaScript Fundamental',
-    description: 'Dasar-dasar pemrograman dengan JavaScript. Variabel, tipe data, function, dan control flow.',
-    difficulty: 'intermediate',
-    progress: 20,
-    totalExercises: 12,
-    completedExercises: 2,
-    icon: 'Code2',
-    color: 'hsl(var(--ios-yellow))',
+    id: 'html-structure',
+    title: 'HTML: Struktur',
+    description: 'Tabel, list, div/span, class/id, dan elemen semantik HTML5.',
+    difficulty: 'beginner',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'LayoutGrid',
+    color: 'hsl(var(--ios-teal))',
   },
   {
-    id: 'dom-manipulation',
-    title: 'DOM Manipulation',
-    description: 'Manipulasi elemen HTML dengan JavaScript. Event handling dan dynamic content.',
-    difficulty: 'intermediate',
+    id: 'css-intro',
+    title: 'CSS: Pengenalan',
+    description: 'Syntax CSS, selectors, cara menambahkan CSS, warna, dan backgrounds.',
+    difficulty: 'beginner',
     progress: 0,
-    totalExercises: 8,
+    totalExercises: 5,
     completedExercises: 0,
-    icon: 'MousePointer',
+    icon: 'Palette',
     color: 'hsl(var(--ios-purple))',
   },
   {
-    id: 'responsive-design',
-    title: 'Responsive Design',
-    description: 'Buat website yang adaptif di semua perangkat dengan media queries dan flexbox/grid.',
+    id: 'css-box-model',
+    title: 'CSS: Box Model',
+    description: 'Border, margin, padding, box model, width/height, dan outline.',
+    difficulty: 'beginner',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Square',
+    color: 'hsl(var(--ios-indigo))',
+  },
+  {
+    id: 'css-text-font',
+    title: 'CSS: Text & Font',
+    description: 'Text styling, font properties, Google Fonts, link styling, dan list/table styling.',
+    difficulty: 'beginner',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'ALargeSmall',
+    color: 'hsl(var(--ios-pink))',
+  },
+  {
+    id: 'js-intro',
+    title: 'JavaScript: Pengenalan',
+    description: 'Output, variabel, tipe data, kondisional (if/else), dan switch statement.',
+    difficulty: 'beginner',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Code2',
+    color: 'hsl(var(--ios-yellow))',
+  },
+
+  // ═══════════════════════════════════════════════════
+  // 🟡 MENENGAH / INTERMEDIATE (Modules 9-17)
+  // ═══════════════════════════════════════════════════
+  {
+    id: 'css-layout',
+    title: 'CSS: Layout',
+    description: 'Display, position, z-index, float, dan overflow untuk mengatur tata letak.',
     difficulty: 'intermediate',
     progress: 0,
-    totalExercises: 6,
+    totalExercises: 5,
     completedExercises: 0,
-    icon: 'Smartphone',
+    icon: 'PanelLeft',
+    color: 'hsl(var(--ios-orange))',
+  },
+  {
+    id: 'css-flexbox',
+    title: 'CSS: Flexbox',
+    description: 'Flex container, items, wrap, centering, dan layout praktis dengan Flexbox.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Columns3',
     color: 'hsl(var(--ios-green))',
   },
   {
-    id: 'js-advanced',
-    title: 'JavaScript Lanjutan',
-    description: 'Konsep advanced: async/await, promises, closures, dan ES6+ features.',
-    difficulty: 'advanced',
+    id: 'css-grid',
+    title: 'CSS: Grid',
+    description: 'Grid container, placement, template areas, auto/minmax, dan alignment.',
+    difficulty: 'intermediate',
     progress: 0,
-    totalExercises: 10,
+    totalExercises: 5,
     completedExercises: 0,
-    icon: 'Zap',
+    icon: 'Grid3x3',
+    color: 'hsl(var(--ios-blue))',
+  },
+  {
+    id: 'css-responsive',
+    title: 'CSS: Responsive',
+    description: 'Media queries, viewport, responsive nav, card grids, dan mobile-first design.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Smartphone',
+    color: 'hsl(var(--ios-teal))',
+  },
+  {
+    id: 'js-operators',
+    title: 'JS: Operators',
+    description: 'Arithmetic, comparison, logical, assignment operators, dan type conversion.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Calculator',
+    color: 'hsl(var(--ios-yellow))',
+  },
+  {
+    id: 'js-loops',
+    title: 'JS: Loops',
+    description: 'For, while, do-while, for...of, for...in, break, continue, dan praktik loop.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Repeat',
+    color: 'hsl(var(--ios-purple))',
+  },
+  {
+    id: 'js-functions',
+    title: 'JS: Functions',
+    description: 'Function declaration, arrow functions, scope, callbacks, rest/spread operator.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Braces',
+    color: 'hsl(var(--ios-red))',
+  },
+  {
+    id: 'js-strings-numbers',
+    title: 'JS: Strings & Numbers',
+    description: 'String methods, template literals, number methods, dates, dan regex.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Hash',
+    color: 'hsl(var(--ios-indigo))',
+  },
+  {
+    id: 'js-arrays',
+    title: 'JS: Arrays',
+    description: 'Array dasar, map/filter/reduce, find/some/every, sort, dan destructuring.',
+    difficulty: 'intermediate',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'List',
     color: 'hsl(var(--ios-pink))',
   },
+
+  // ═══════════════════════════════════════════════════
+  // 🔴 LANJUTAN / ADVANCED (Modules 18-22)
+  // ═══════════════════════════════════════════════════
+  {
+    id: 'js-objects',
+    title: 'JS: Objects',
+    description: 'Object creation, methods, this, destructuring, JSON, Map & Set.',
+    difficulty: 'advanced',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Box',
+    color: 'hsl(var(--ios-orange))',
+  },
+  {
+    id: 'js-dom',
+    title: 'JS: DOM Manipulation',
+    description: 'Selecting, modifying, creating/removing elemen, navigasi DOM, dan Todo List.',
+    difficulty: 'advanced',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'MousePointer',
+    color: 'hsl(var(--ios-blue))',
+  },
+  {
+    id: 'js-events',
+    title: 'JS: Events',
+    description: 'Event listeners, event object, form events, delegation, custom events & debounce.',
+    difficulty: 'advanced',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Zap',
+    color: 'hsl(var(--ios-yellow))',
+  },
+  {
+    id: 'css-advanced',
+    title: 'CSS: Advanced',
+    description: 'CSS variables, transform, transition, filters/gradients, dan pseudo-elements.',
+    difficulty: 'advanced',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Sparkles',
+    color: 'hsl(var(--ios-purple))',
+  },
+  {
+    id: 'css-animation',
+    title: 'CSS: Animation',
+    description: 'Keyframes, animation properties, loading animations, scroll reveal, dan landing page.',
+    difficulty: 'advanced',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Play',
+    color: 'hsl(var(--ios-green))',
+  },
+
+  // ═══════════════════════════════════════════════════
+  // 👑 SEPUH / EXPERT (Modules 23-25)
+  // ═══════════════════════════════════════════════════
+  {
+    id: 'js-async',
+    title: 'JS: Async Programming',
+    description: 'Promises, async/await, Fetch API, Promise combinators, dan error handling async.',
+    difficulty: 'expert',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Timer',
+    color: 'hsl(var(--ios-red))',
+  },
+  {
+    id: 'js-modern',
+    title: 'JS: Modern Features',
+    description: 'ES6 Classes, optional chaining, error handling, localStorage, dan Memory Game project.',
+    difficulty: 'expert',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'Rocket',
+    color: 'hsl(var(--ios-indigo))',
+  },
+  {
+    id: 'html-forms',
+    title: 'HTML: Forms & Accessibility',
+    description: 'Form input types, validation, FormData API, accessibility (a11y), dan contact form project.',
+    difficulty: 'expert',
+    progress: 0,
+    totalExercises: 5,
+    completedExercises: 0,
+    icon: 'ClipboardList',
+    color: 'hsl(var(--ios-teal))',
+  },
 ];
-
-/** Sample exercise for HTML Basics module */
-export const sampleExercise: Exercise = {
-  id: 'html-01',
-  title: 'Struktur HTML Pertama',
-  moduleId: 'html-basics',
-  order: 1,
-  theory: `# Struktur Dasar HTML
-
-HTML (HyperText Markup Language) adalah bahasa markup standar untuk dokumen yang dirancang untuk ditampilkan di browser web.
-
-## Elemen Penting
-
-- **\`<!DOCTYPE html>\`** - Deklarasi tipe dokumen
-- **\`<html>\`** - Elemen root dari halaman HTML
-- **\`<head>\`** - Berisi metadata tentang dokumen
-- **\`<body>\`** - Berisi konten yang terlihat di halaman
-
-## Tag yang Sering Digunakan
-
-| Tag | Fungsi |
-|-----|--------|
-| \`<h1> - <h6>\` | Heading |
-| \`<p>\` | Paragraf |
-| \`<div>\` | Container |
-| \`<span>\` | Inline container |`,
-  instructions: `Buatlah struktur HTML dasar dengan ketentuan berikut:
-
-1. Gunakan tag \`<h1>\` untuk membuat judul "Selamat Datang"
-2. Gunakan tag \`<p>\` untuk membuat paragraf dengan teks "Ini adalah halaman web pertamaku!"
-3. Tambahkan tag \`<button>\` dengan teks "Klik Saya"
-4. Berikan warna latar belakang biru muda pada body menggunakan CSS
-
-**Tips:** Pastikan struktur HTML kamu lengkap dengan tag \`<html>\`, \`<head>\`, dan \`<body>\`.`,
-  hints: [
-    'Ingat untuk menutup setiap tag yang dibuka',
-    'Gunakan property background-color untuk mengubah warna latar',
-    'Tag button membutuhkan tag penutup </button>',
-  ],
-  expectedOutput: 'Halaman dengan judul "Selamat Datang", paragraf, dan tombol berwarna biru muda',
-  starterHTML: `<!DOCTYPE html>
-<html>
-<head>
-  <title>Halaman Pertamaku</title>
-</head>
-<body>
-  <!-- Tulis kode di sini -->
-  
-</body>
-</html>`,
-  starterCSS: `/* Ubah warna latar belakang body */
-body {
-  
-}`,
-  starterJS: `// Tambahkan interaktivitas jika diperlukan
-console.log('Hello World!');`,
-};
-
-/** Get exercise by module ID */
-export const getExercisesByModule = (moduleId: string): Exercise[] => {
-  // In a real app, this would fetch from an API
-  // For now, return sample exercise for html-basics
-  if (moduleId === 'html-basics') {
-    return [sampleExercise];
-  }
-  return [];
-};
 
 /** Get module by ID */
 export const getModuleById = (id: string): LessonModule | undefined => {

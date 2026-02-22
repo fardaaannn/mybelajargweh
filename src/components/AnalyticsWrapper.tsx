@@ -5,8 +5,9 @@
  * Wraps children and tracks page views on route changes.
  */
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { trackEvent } from './Analytics';
 
 interface AnalyticsWrapperProps {
   children: React.ReactNode;
@@ -20,19 +21,11 @@ export const AnalyticsWrapper: React.FC<AnalyticsWrapperProps> = ({ children }) 
   const location = useLocation();
 
   useEffect(() => {
-    // Simple console logging for development
-    // Replace with actual analytics service like Google Analytics
-    console.log('[Analytics] Page view:', location.pathname);
+    trackEvent('Page View', { path: location.pathname });
   }, [location]);
 
   return <>{children}</>;
 };
 
-/**
- * Track custom events
- * @param eventName - Name of the event
- * @param properties - Event properties
- */
-export const trackEvent = (eventName: string, properties?: Record<string, any>): void => {
-  console.log('[Analytics] Event:', eventName, properties);
-};
+// Re-export trackEvent for backward compatibility
+export { trackEvent } from './Analytics';

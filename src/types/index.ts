@@ -12,7 +12,7 @@ export interface LessonModule {
   /** Brief description of the lesson content */
   description: string;
   /** Difficulty level: beginner, intermediate, advanced */
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  difficulty: 'beginner' | 'intermediate' | 'advanced' | 'expert';
   /** Progress percentage (0-100) */
   progress: number;
   /** Total number of exercises in this module */

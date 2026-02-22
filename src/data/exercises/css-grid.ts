@@ -1,0 +1,101 @@
+/**
+ * CSS Grid Exercises
+ * @module data/exercises/css-grid
+ * Modul 11: CSS Grid — Container, Items, Template, Areas, Alignment
+ */
+import type { ExerciseWithValidation } from './types';
+
+export const cssGridExercises: ExerciseWithValidation[] = [
+  {
+    id: 'css-grid-01',
+    title: 'Grid Container',
+    moduleId: 'css-grid',
+    order: 1,
+    theory: `# CSS Grid\n\nGrid adalah sistem layout 2 dimensi (baris DAN kolom).\n\n## Activate Grid\n\`\`\`css\n.container {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr; /* 3 kolom sama */\n  grid-template-rows: 100px 200px;\n  gap: 10px;\n}\n\`\`\`\n\n## Satuan fr\n\`fr\` = fraction (bagian) dari ruang yang tersedia:\n- \`1fr 1fr 1fr\` = 3 kolom sama\n- \`1fr 2fr 1fr\` = kolom tengah 2x lebih besar\n- \`200px 1fr\` = kolom pertama 200px, sisanya mengisi\n\n## repeat()\n\`\`\`css\ngrid-template-columns: repeat(3, 1fr); /* Sama dengan 1fr 1fr 1fr */\ngrid-template-columns: repeat(4, 1fr); /* 4 kolom sama */\n\`\`\``,
+    instructions: `1. Buat grid container dengan \`display: grid\`\n2. Buat 3 kolom dengan \`grid-template-columns\` menggunakan \`fr\`\n3. Tambahkan \`gap\` antar item\n4. Gunakan \`repeat()\` untuk kolom\n5. Buat variasi kolom: \`200px 1fr 1fr\``,
+    hints: ['display: grid mengaktifkan CSS Grid', 'fr membagi ruang tersedia secara proporsional', 'repeat(3, 1fr) = 1fr 1fr 1fr'],
+    expectedOutput: 'Grid 3 kolom dengan items rata',
+    starterHTML: `<div class="grid-container">\n  <div class="cell">1</div>\n  <div class="cell">2</div>\n  <div class="cell">3</div>\n  <div class="cell">4</div>\n  <div class="cell">5</div>\n  <div class="cell">6</div>\n</div>`,
+    starterCSS: `.cell { background: #3498db; color: white; padding: 20px; text-align: center; font-weight: bold; border-radius: 8px; }\n`,
+    starterJS: '',
+    validationRules: [
+      { type: 'function', validator: (code) => code.css.includes('display: grid') || code.css.includes('display:grid'), message: 'Gunakan display: grid' },
+      { type: 'function', validator: (code) => code.css.includes('grid-template-columns'), message: 'Gunakan grid-template-columns' },
+      { type: 'function', validator: (code) => code.css.includes('fr'), message: 'Gunakan satuan fr' },
+      { type: 'function', validator: (code) => code.css.includes('gap'), message: 'Gunakan gap' },
+    ],
+    successMessage: '🎉 Kamu sudah membuat grid pertamamu!',
+  },
+  {
+    id: 'css-grid-02',
+    title: 'Grid Item Placement',
+    moduleId: 'css-grid',
+    order: 2,
+    theory: `# Grid Item Placement\n\nMenempatkan item di posisi tertentu dalam grid.\n\n## Property\n\`\`\`css\n.item {\n  grid-column: 1 / 3;    /* Dari kolom 1 sampai 3 (span 2 kolom) */\n  grid-row: 1 / 2;       /* Baris 1 */\n}\n\n/* Shorthand span */\n.item {\n  grid-column: span 2;   /* Span 2 kolom dari posisi saat ini */\n  grid-row: span 3;      /* Span 3 baris */\n}\n\`\`\`\n\n## Grid Lines\nKolom dan baris dihitung dari line 1:\n\`\`\`\nLine: 1    2    3    4\n      |col1|col2|col3|\n\`\`\``,
+    instructions: `1. Buat grid 3 kolom\n2. Buat item pertama span 2 kolom dengan \`grid-column: span 2\`\n3. Buat item yang menempati posisi spesifik (misal: \`grid-column: 2 / 4\`)\n4. Buat item yang span 2 baris dengan \`grid-row: span 2\`\n5. Buat layout card yang asimetris`,
+    hints: ['grid-column: 1 / 3 artinya dari line 1 sampai line 3', 'span 2 artinya mencakup 2 kolom/baris', 'Hati-hati: line 1 adalah garis SEBELUM kolom pertama'],
+    expectedOutput: 'Grid dengan item yang span multiple kolom/baris',
+    starterHTML: `<div class="grid">\n  <div class="cell wide">Wide (span 2)</div>\n  <div class="cell">Normal</div>\n  <div class="cell tall">Tall (span 2 rows)</div>\n  <div class="cell">Normal</div>\n  <div class="cell">Normal</div>\n</div>`,
+    starterCSS: `.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }\n.cell { background: #9b59b6; color: white; padding: 20px; border-radius: 8px; text-align: center; font-weight: bold; }\n`,
+    starterJS: '',
+    validationRules: [
+      { type: 'function', validator: (code) => code.css.includes('grid-column'), message: 'Gunakan grid-column' },
+      { type: 'function', validator: (code) => code.css.includes('grid-row') || code.css.includes('span'), message: 'Gunakan grid-row atau span' },
+    ],
+    successMessage: '🎉 Kamu sudah bisa menempatkan grid items!',
+  },
+  {
+    id: 'css-grid-03',
+    title: 'Grid Template Areas',
+    moduleId: 'css-grid',
+    order: 3,
+    theory: `# Grid Template Areas\n\nCara visual mendefinisikan layout grid.\n\n\`\`\`css\n.container {\n  display: grid;\n  grid-template-areas:\n    "header header header"\n    "sidebar content content"\n    "footer footer footer";\n  grid-template-columns: 250px 1fr 1fr;\n  grid-template-rows: auto 1fr auto;\n}\n\nheader  { grid-area: header; }\n.sidebar { grid-area: sidebar; }\n.content { grid-area: content; }\nfooter  { grid-area: footer; }\n\`\`\`\n\n## Aturan\n- Setiap string = satu baris\n- Nama yang sama = merged area\n- \`.\` = sel kosong`,
+    instructions: `1. Buat grid dengan \`grid-template-areas\` untuk layout halaman\n2. Definisikan area: header, sidebar, content, footer\n3. Assign \`grid-area\` pada setiap elemen\n4. Header dan footer full-width (3 kolom)\n5. Sidebar hanya 1 kolom, content 2 kolom`,
+    hints: ['Nama area harus konsisten antara template dan grid-area', 'Gunakan . untuk sel kosong', 'Setiap baris template harus jumlah kolomnya sama'],
+    expectedOutput: 'Layout halaman lengkap menggunakan grid areas',
+    starterHTML: `<div class="page">\n  <header>Header</header>\n  <aside class="sidebar">Sidebar</aside>\n  <main class="content">Content</main>\n  <footer>Footer</footer>\n</div>`,
+    starterCSS: `* { margin: 0; box-sizing: border-box; }\nheader, footer { background: #2c3e50; color: white; padding: 20px; text-align: center; }\n.sidebar { background: #ecf0f1; padding: 20px; }\n.content { padding: 20px; min-height: 300px; }\n`,
+    starterJS: '',
+    validationRules: [
+      { type: 'function', validator: (code) => code.css.includes('grid-template-areas'), message: 'Gunakan grid-template-areas' },
+      { type: 'function', validator: (code) => code.css.includes('grid-area'), message: 'Gunakan grid-area pada elemen' },
+    ],
+    successMessage: '🎉 Kamu sudah paham Grid Template Areas!',
+  },
+  {
+    id: 'css-grid-04',
+    title: 'Grid Auto & Minmax',
+    moduleId: 'css-grid',
+    order: 4,
+    theory: `# Grid Auto & Minmax\n\n## auto-fill & auto-fit\nOtomatis menentukan jumlah kolom:\n\`\`\`css\n/* auto-fill: buat kolom sebanyak mungkin */\ngrid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n\n/* auto-fit: sama tapi stretch jika ada ruang */\ngrid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n\`\`\`\n\n## minmax()\nMenetapkan ukuran minimum dan maksimum:\n\`\`\`css\ngrid-template-columns: minmax(200px, 1fr) 2fr;\n\`\`\`\n\n## auto-rows / auto-columns\n\`\`\`css\ngrid-auto-rows: 150px;     /* Tinggi baris otomatis */\ngrid-auto-rows: minmax(100px, auto); /* Min 100px, max auto */\n\`\`\``,
+    instructions: `1. Buat grid responsif dengan \`repeat(auto-fit, minmax(250px, 1fr))\`\n2. Gunakan \`minmax()\` untuk ukuran kolom\n3. Set \`grid-auto-rows\` untuk baris otomatis\n4. Cobalah resize browser untuk melihat efek auto-fit\n5. Bandingkan auto-fill vs auto-fit`,
+    hints: ['auto-fit + minmax = responsive tanpa media query', 'minmax(200px, 1fr): minimal 200px, maksimal seimbang', 'grid-auto-rows mengatur baris yang tidak di-template'],
+    expectedOutput: 'Grid responsif yang otomatis menyesuaikan jumlah kolom',
+    starterHTML: `<h2>Responsive Grid</h2>\n<div class="auto-grid">\n  <div class="card">Card 1</div>\n  <div class="card">Card 2</div>\n  <div class="card">Card 3</div>\n  <div class="card">Card 4</div>\n  <div class="card">Card 5</div>\n  <div class="card">Card 6</div>\n</div>`,
+    starterCSS: `.card { background: #1abc9c; color: white; padding: 30px; border-radius: 10px; text-align: center; font-weight: bold; }\n`,
+    starterJS: '',
+    validationRules: [
+      { type: 'function', validator: (code) => code.css.includes('auto-fit') || code.css.includes('auto-fill'), message: 'Gunakan auto-fit atau auto-fill' },
+      { type: 'function', validator: (code) => code.css.includes('minmax'), message: 'Gunakan minmax()' },
+    ],
+    successMessage: '🎉 Kamu sudah paham Grid responsif!',
+  },
+  {
+    id: 'css-grid-05',
+    title: 'Grid Alignment',
+    moduleId: 'css-grid',
+    order: 5,
+    theory: `# Grid Alignment\n\n## Container Alignment\n- \`justify-items\` — Horizontal alignment items di dalam sel\n- \`align-items\` — Vertical alignment items di dalam sel\n- \`justify-content\` — Horizontal alignment seluruh grid\n- \`align-content\` — Vertical alignment seluruh grid\n- \`place-items\` — Shorthand: align-items justify-items\n\n## Item Alignment\n- \`justify-self\` — Horizontal satu item\n- \`align-self\` — Vertical satu item\n- \`place-self\` — Shorthand\n\n## Nilai\n\`start\` | \`end\` | \`center\` | \`stretch\``,
+    instructions: `1. Buat grid dan gunakan \`place-items: center\` untuk center semua items\n2. Gunakan \`justify-self\` pada satu item untuk posisi berbeda\n3. Gunakan \`align-self\` pada item lain\n4. Coba \`justify-content: space-between\` pada grid container\n5. Set height pada grid dan coba \`align-content: center\``,
+    hints: ['place-items adalah shorthand dari align-items + justify-items', 'place-self: center center; untuk center individu', 'justify = horizontal, align = vertical'],
+    expectedOutput: 'Grid dengan items yang di-align berbeda-beda',
+    starterHTML: `<div class="grid-align">\n  <div class="cell a">A (center)</div>\n  <div class="cell b">B (start)</div>\n  <div class="cell c">C (end)</div>\n  <div class="cell d">D (stretch)</div>\n</div>`,
+    starterCSS: `.grid-align { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-height: 300px; background: #f0f0f0; padding: 10px; }\n.cell { background: #e74c3c; color: white; padding: 15px; border-radius: 8px; font-weight: bold; }\n`,
+    starterJS: '',
+    validationRules: [
+      { type: 'function', validator: (code) => code.css.includes('place-items') || (code.css.includes('justify-items') && code.css.includes('align-items')), message: 'Gunakan place-items atau justify-items + align-items' },
+      { type: 'function', validator: (code) => code.css.includes('self'), message: 'Gunakan justify-self atau align-self' },
+    ],
+    successMessage: '🎉 Kamu sudah menguasai Grid alignment!',
+  },
+];

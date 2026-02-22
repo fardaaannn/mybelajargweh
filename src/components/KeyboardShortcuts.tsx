@@ -23,6 +23,8 @@ interface KeyboardShortcutsProps {
   onTogglePreview?: () => void;
   /** Callback to reset code */
   onReset?: () => void;
+  /** If false, don't use fixed positioning (parent handles it) */
+  floating?: boolean;
 }
 
 /**
@@ -38,6 +40,7 @@ export const KeyboardShortcuts: React.FC<KeyboardShortcutsProps> = ({
   onToggleTheory,
   onTogglePreview,
   onReset,
+  floating = true,
 }) => {
   const [showHelp, setShowHelp] = useState(false);
 
@@ -121,13 +124,13 @@ export const KeyboardShortcuts: React.FC<KeyboardShortcutsProps> = ({
       {/* Shortcut Help Button */}
       <button
         onClick={() => setShowHelp(true)}
-        className="
-          fixed bottom-6 left-6 z-40
+        className={`
+          ${floating ? 'fixed bottom-6 left-6 z-40' : ''}
           w-10 h-10 rounded-full
           bg-muted hover:bg-muted/80
           flex items-center justify-center
           transition-colors
-        "
+        `}
         title="Keyboard shortcuts (?)"
         aria-label="Tampilkan keyboard shortcuts"
       >

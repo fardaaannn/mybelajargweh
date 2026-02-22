@@ -6,7 +6,7 @@
  * Tracks completed exercises, module progress, and overall stats.
  */
 
-import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useCallback, useState } from 'react';
 import type { LessonModule } from '@/types';
 import { lessonModules } from '@/data/modules';
 
@@ -234,5 +234,3 @@ export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) 
   );
 };
 
-// Add missing import
-import { useState } from 'react';

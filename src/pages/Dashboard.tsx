@@ -26,7 +26,7 @@ import { useProgress } from '@/context/ProgressContext';
 import { lessonModules } from '@/data/modules';
 import type { LessonModule } from '@/types';
 
-type DifficultyFilter = 'all' | 'beginner' | 'intermediate' | 'advanced';
+type DifficultyFilter = 'all' | 'beginner' | 'intermediate' | 'advanced' | 'expert';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -180,7 +180,7 @@ export const Dashboard: React.FC = () => {
           </div>
 
           <div className="flex gap-2 flex-wrap">
-            {(['all', 'beginner', 'intermediate', 'advanced'] as const).map((filter) => (
+            {(['all', 'beginner', 'intermediate', 'advanced', 'expert'] as const).map((filter) => (
               <Button
                 key={filter}
                 variant={difficultyFilter === filter ? 'default' : 'outline'}
@@ -188,8 +188,9 @@ export const Dashboard: React.FC = () => {
                 className={`rounded-xl ${filter !== 'all' ? `ios-badge-${filter}` : ''}`}
               >
                 {filter === 'all' ? 'Semua' : 
-                 filter === 'beginner' ? 'Pemula' : 
-                 filter === 'intermediate' ? 'Menengah' : 'Lanjutan'}
+                 filter === 'beginner' ? '🟢 Pemula' : 
+                 filter === 'intermediate' ? '🟡 Menengah' : 
+                 filter === 'advanced' ? '🔴 Lanjutan' : '👑 Sepuh'}
               </Button>
             ))}
           </div>

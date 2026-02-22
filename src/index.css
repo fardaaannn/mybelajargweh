@@ -33,6 +33,10 @@
     --ios-orange: 35 100% 50%;
     --ios-purple: 270 60% 55%;
     --ios-pink: 340 80% 60%;
+    --ios-red: 0 85% 55%;
+    --ios-yellow: 45 100% 50%;
+    --ios-teal: 175 70% 40%;
+    --ios-indigo: 240 50% 55%;
     --ios-gray: 240 5% 45%;
     --ios-light-gray: 240 5% 95%;
     
@@ -189,6 +193,29 @@
   
   .ios-badge-advanced {
     @apply ios-badge bg-[hsl(340,80%,60%,0.15)] text-[hsl(340,80%,50%)];
+  }
+  
+  .ios-badge-expert {
+    @apply ios-badge bg-[hsl(45,100%,50%,0.15)] text-[hsl(35,100%,35%)];
+  }
+  
+  /* Global hover glow for clickable elements */
+  button:hover,
+  a:hover,
+  [role="button"]:hover,
+  .ios-card:hover,
+  .ios-button:hover,
+  .ios-nav-item:hover {
+    box-shadow: 0 0 12px 2px hsl(var(--ios-blue) / 0.25),
+                0 0 4px 1px hsl(var(--ios-blue) / 0.15);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+  }
+
+  /* Subtle lift on active press */
+  button:active,
+  a:active,
+  [role="button"]:active {
+    box-shadow: 0 0 6px 1px hsl(var(--ios-blue) / 0.15);
   }
 }
 

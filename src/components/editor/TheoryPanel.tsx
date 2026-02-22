@@ -157,7 +157,7 @@ export const TheoryPanel: React.FC<TheoryPanelProps> = ({
         </section>
 
         {/* Instructions */}
-        <section className="pt-4 border-t border-border">
+        <section className="pt-4 mt-2">
           <div className="flex items-center gap-2 mb-3">
             <ListChecks className="w-4 h-4 text-[hsl(var(--ios-orange))]" />
             <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Instruksi</h3>
@@ -174,7 +174,7 @@ export const TheoryPanel: React.FC<TheoryPanelProps> = ({
         </section>
 
         {/* Hints */}
-        <section className="pt-4 border-t border-border">
+        <section className="pt-4 mt-2">
           <button
             onClick={() => setShowHints(!showHints)}
             className="flex items-center justify-between w-full text-left"

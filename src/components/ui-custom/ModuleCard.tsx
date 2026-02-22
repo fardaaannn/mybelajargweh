@@ -16,7 +16,26 @@ import {
   Zap,
   ChevronRight,
   CheckCircle2,
-  Circle
+  Circle,
+  Type,
+  Link,
+  LayoutGrid,
+  Square,
+  ALargeSmall,
+  PanelLeft,
+  Columns3,
+  Grid3x3,
+  Calculator,
+  Repeat,
+  Braces,
+  Hash,
+  List,
+  Box,
+  Sparkles,
+  Play,
+  Timer,
+  Rocket,
+  ClipboardList,
 } from 'lucide-react';
 import type { LessonModule } from '@/types';
 
@@ -38,6 +57,25 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
   MousePointer,
   Smartphone,
   Zap,
+  Type,
+  Link,
+  LayoutGrid,
+  Square,
+  ALargeSmall,
+  PanelLeft,
+  Columns3,
+  Grid3x3,
+  Calculator,
+  Repeat,
+  Braces,
+  Hash,
+  List,
+  Box,
+  Sparkles,
+  Play,
+  Timer,
+  Rocket,
+  ClipboardList,
 };
 
 /**
@@ -70,6 +108,7 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({
     beginner: 'ios-badge-beginner',
     intermediate: 'ios-badge-intermediate',
     advanced: 'ios-badge-advanced',
+    expert: 'ios-badge-expert',
   }[module.difficulty];
 
   // Calculate if module is completed
@@ -125,9 +164,10 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({
       {/* Difficulty Badge */}
       <div className="flex items-center gap-2 mb-4">
         <span className={badgeClass}>
-          {module.difficulty === 'beginner' && 'Pemula'}
-          {module.difficulty === 'intermediate' && 'Menengah'}
-          {module.difficulty === 'advanced' && 'Lanjutan'}
+          {module.difficulty === 'beginner' && '🟢 Pemula'}
+          {module.difficulty === 'intermediate' && '🟡 Menengah'}
+          {module.difficulty === 'advanced' && '🔴 Lanjutan'}
+          {module.difficulty === 'expert' && '👑 Sepuh'}
         </span>
         <span className="text-xs text-muted-foreground">
           {module.completedExercises}/{module.totalExercises} latihan

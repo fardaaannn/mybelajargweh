@@ -9,14 +9,14 @@ import React, { useState } from 'react';
 import { MessageCircle, X, Send, Bug, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { trackEvent } from './AnalyticsWrapper';
+import { trackEvent } from './Analytics';
 
 /**
  * FeedbackButton Component
  * 
  * Floating action button that opens a feedback form.
  */
-export const FeedbackButton: React.FC = () => {
+export const FeedbackButton: React.FC<{ floating?: boolean }> = ({ floating = true }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [feedbackType, setFeedbackType] = useState<'suggestion' | 'bug' | null>(null);
   const [message, setMessage] = useState('');
@@ -53,15 +53,15 @@ export const FeedbackButton: React.FC = () => {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="
-          fixed bottom-6 right-6 z-50
+        className={`
+          ${floating ? 'fixed bottom-6 right-6 z-50' : ''}
           w-14 h-14 rounded-full
           bg-gradient-to-br from-[hsl(var(--ios-blue))] to-[hsl(var(--ios-purple))]
           text-white shadow-lg
           flex items-center justify-center
           hover:scale-110 active:scale-95
           transition-transform duration-200
-        "
+        `}
         aria-label="Beri feedback"
       >
         <MessageCircle className="w-6 h-6" />
@@ -70,7 +70,7 @@ export const FeedbackButton: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-80">
+    <div className={`${floating ? 'fixed bottom-6 right-6' : ''} z-50 w-80`}>
       <div className="ios-card p-4 shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">

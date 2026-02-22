@@ -135,12 +135,11 @@ ${code.js}
   };
 
   /**
-   * Share code (copy shareable link)
+   * Share code (copy as JSON to clipboard)
    */
   const handleShare = async () => {
-    const codeString = btoa(JSON.stringify(code));
-    const shareUrl = `${window.location.origin}${window.location.pathname}?code=${codeString}`;
-    await navigator.clipboard.writeText(shareUrl);
+    const codeString = JSON.stringify(code, null, 2);
+    await navigator.clipboard.writeText(codeString);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

@@ -26,7 +26,7 @@ import { CodeEditor } from '@/components/editor/CodeEditor';
 import { LivePreview } from '@/components/editor/LivePreview';
 import { SuccessCelebration } from '@/components/SuccessCelebration';
 import { KeyboardShortcuts } from '@/components/KeyboardShortcuts';
-import { ConsoleOutput } from '@/components/ConsoleOutput';
+
 import { CodeActions } from '@/components/CodeActions';
 import { FeedbackButton } from '@/components/FeedbackButton';
 import { Button } from '@/components/ui/button';
@@ -42,7 +42,6 @@ import type { ExerciseWithValidation } from '@/data/exercises';
 interface PanelState {
   theory: boolean;
   preview: boolean;
-  console: boolean;
 }
 
 export const Workspace: React.FC = () => {
@@ -86,7 +85,6 @@ export const Workspace: React.FC = () => {
   const [panels, setPanels] = useState<PanelState>({
     theory: true,
     preview: true,
-    console: false,
   });
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [validationResult, setValidationResult] = useState<{ isValid: boolean; errors: string[] } | null>(null);
@@ -416,25 +414,22 @@ export const Workspace: React.FC = () => {
         />
       )}
 
-      {/* Keyboard Shortcuts */}
-      <KeyboardShortcuts
-        onRunCode={handleCheckAnswer}
-        onSave={() => {}}
-        onNext={handleNextExercise}
-        onPrevious={handlePreviousExercise}
-        onToggleTheory={() => togglePanel('theory')}
-        onTogglePreview={() => togglePanel('preview')}
-        onReset={resetCode}
-      />
 
-      {/* Console Output */}
-      <ConsoleOutput
-        isOpen={panels.console}
-        onToggle={() => togglePanel('console')}
-      />
 
-      {/* Feedback Button */}
-      <FeedbackButton />
+      {/* Floating Buttons (right side) */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
+        <KeyboardShortcuts
+          onRunCode={handleCheckAnswer}
+          onSave={() => {}}
+          onNext={handleNextExercise}
+          onPrevious={handlePreviousExercise}
+          onToggleTheory={() => togglePanel('theory')}
+          onTogglePreview={() => togglePanel('preview')}
+          onReset={resetCode}
+          floating={false}
+        />
+        <FeedbackButton floating={false} />
+      </div>
     </div>
   );
 };
